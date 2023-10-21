@@ -1,51 +1,57 @@
 import random
-print("BLEAT'!!!")
+print("Hello Евгений Валерьевич")
 
-class Player:
+class Student:
 
     def __init__(self,name):
         self.name = name
-        self.HP = 100
-        self.score = 0
-
+        self.money = 100
+        self.rest = 0
+        self.marks = 100
     def show_info(self):
-        print(self.name)
-        print(self.HP)
-        print(self.score)
+        print("Name:",self.name)
+        print("Money:",self.money)
+        print("Rest:",self.rest)
+        print("Marks:",self.marks)
 
     def set_name(self, new_name):
         self.name = new_name
 
-    def set_heal(self, amount):
-        self.HP += amount
+    def set_work(self, amount):
+        self.money += amount
+
+    def set_study(self, amount):
+        self.marks += amount
 
     def get_name(self):
         return self.name
 
-    def add_score(self,amount):
-        self.score += amount
+    def add_days(self,amount):
+        self.rest += amount
 
-    def damage(self,amount):
-        self.HP -= amount
+    def spend(self,amount):
+        self.money -= amount
 
     def is_alive(self):
-        return self.HP > 0
+        return self.money > 0
 
 
-new_player=Player("Dan")
+new_player=Student("Dan")
 
 
 
 while new_player.is_alive():
-    if new_player.HP < 20:
+    if new_player.money < 20:
         num = random.randint(0, 1)
-        new_player.set_heal(random.randint(1, 50))
+        new_player.set_work(random.randint(1, 10))
+    if new_player.money > 21:
+        new_player.set_study(random.randint(1, 20))
 
     num = random.randint(1,2)
 
     if num == 1:
-        new_player.add_score(random.randint(1,10))
+        new_player.add_days(random.randint(1,10))
     elif num == 2:
-        new_player.damage(random.randint(1,10))
+        new_player.spend(random.randint(1,10))
 
 new_player.show_info()
